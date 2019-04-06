@@ -11,3 +11,5 @@ super simple audio hosting service
 * use s3 or similar
 * expire files after some time?
 * rewrite in something hipster (rust?)
+* better styles
+* logo and favicon
