@@ -67,7 +67,12 @@ app.get('/:id', (req, res) => {
     }
 
     const fileName = files.find((f) => stripExt(f) === id)
-    res.send(filePage('/files/' + fileName))
+    res.send(filePage({
+      artist: 'todo',
+      description: 'todo',
+      file: '/files/' + fileName,
+      title: 'todo',
+    }))
   })
 })
 

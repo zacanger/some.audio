@@ -16,3 +16,5 @@ Simple, anonymous audio file host
 * set up ci/cd/cd (circle?)
 * tests
 * users/auth (oauth?) + 'my files' type of thing
+* submit file on one click, not two
+* validate input file size, reject if > ?
