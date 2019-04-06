@@ -2,6 +2,10 @@
 
 super simple audio hosting service
 
-v1 in node. will be working on a rust version + cloud blob storage.
+## TODO
 
-also need a name and a domain, and to make it not bad
+* make the thing not bad
+* get a domain name (*.audio?)
+* use s3 or similar
+* expire files after some time?
+* rewrite in something hipster (rust?)
