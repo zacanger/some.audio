@@ -1,7 +1,6 @@
 const { existsSync, statSync } = require('fs')
 const { extname, resolve } = require('path')
 const glob = require('glob')
-const _ = require('lodash')
 const express = require('express')
 const bb = require('express-busboy')
 const sanitizeFilename = require('sanitize-filename')
@@ -9,8 +8,8 @@ const { getSlug, handleError, listenLog, moveFile } = require('./util')
 const { homePage, filePage } = require('./pages')
 const { audioPath } = require('./config')
 const app = express()
-const statCache = {}
 const pub = resolve(__dirname, '..', 'public')
+const statCache = {}
 
 app.use(express.static(pub))
 app.use('/files', express.static(audioPath))
@@ -63,7 +62,7 @@ app.get('/:id', (req, res) => {
   glob('*.*', { cwd: audioPath }, (err, files) => {
     if (err) throw err
 
-    const fullFiles = _.reverse(_.sortBy(_.map(files, (f) => {
+    const fullFiles = files.map((f) => {
       if (statCache[f]) return statCache[f]
       const stat = statSync(`${audioPath}/${f}`)
       const o = {
@@ -73,7 +72,7 @@ app.get('/:id', (req, res) => {
       }
       statCache[f] = o
       return o
-    }), 'mtime'))
+    })
 
     const withoutExtension = fullFiles.map((f) => stripExt(f.name))
     if (!withoutExtension.includes(id)) {
