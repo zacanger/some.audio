@@ -1,0 +1,48 @@
+{
+  "name": "audio-host",
+  "description": "audio host",
+  "version": "0.0.1",
+  "author": {
+    "name": "Zac Anger",
+    "email": "zac@zacanger.com",
+    "url": "http://zacanger.com"
+  },
+  "license": "WTFPL",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "forever start -a -l f.log -e e.log -o o.log index.js",
+    "test": "npm run test:lint",
+    "test:lint": "eslint -c .eslintrc.json src"
+  },
+  "homepage": "http://img.zacanger.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zacanger/dotcom"
+  },
+  "bugs": "https://github.com/zacanger/dotcom/issues",
+  "keywords": [
+    "imghost"
+  ],
+  "dependencies": {
+    "compression": "1.7.1",
+    "dateformat": "3.0.2",
+    "express": "4.16.2",
+    "express-busboy": "6.0.1",
+    "express-static-gzip": "0.3.0",
+    "forever": "0.15.3",
+    "lodash": "4.17.4",
+    "nodemon": "1.12.1",
+    "sanitize-filename": "1.6.1",
+    "unique-slug": "2.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "8.0.2",
+    "eslint": "4.12.0",
+    "eslint-config-jane": "0.7.0",
+    "eslint-plugin-babel": "4.1.2",
+    "eslint-plugin-promise": "3.6.0",
+    "eslint-plugin-unicorn": "3.0.0"
+  },
+  "private": true
+}
