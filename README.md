@@ -1,4 +1,6 @@
-# audio host
+# some.audio
+
+<http://some.audio>
 
 super simple audio hosting service
 
