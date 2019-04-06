@@ -1,6 +1,7 @@
 const fs = require('fs')
 const { resolve } = require('path')
 const { createHash } = require('crypto')
+const cluster = require('cluster')
 const uniqueSlug = require('unique-slug')
 const config = require('./config')
 const { errorPage } = require('./pages')
@@ -33,7 +34,10 @@ const moveFile = (oldPath, newPath, cb) => {
 
 const listenLog = (app) => {
   app.listen(config.port, () => {
-    console.log(`${config.name} listening on ${config.port}`)
+    const clusterMessage = process.env.NODE_ENV === 'production'
+      ? `worker ${cluster.worker.id} `
+      : ''
+    console.log(`${config.name} ${clusterMessage}listening on ${config.port}`)
   })
 }
 

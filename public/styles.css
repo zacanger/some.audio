@@ -42,6 +42,13 @@ body {
   padding: 1rem;
   max-width: 900px;
   margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  margin-top: 120px;
+  flex: 1 0 auto;
 }
 p { margin-top: 0; }
 
@@ -72,39 +79,6 @@ a:active {
   color: #007BE6;
 }
 
-p, table, form {
-  margin-bottom: 2rem;
-}
-p {
-  margin-top: 1rem;
-  margin-bottom: 2.5rem;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-th {
-  font-weight: 600;
-}
-td, th {
-  text-align: left;
-  vertical-align: top;
-  font-weight: normal;
-  border-bottom: 1px solid #ccc;
-  padding: 0.8rem;
-}
-thead th {
-  border-bottom-width: 2px;
-  padding-bottom: 0.6rem;
-}
-table {
-  display: block;
-  max-width: 100%;
-  overflow-x: auto;
-}
-
 input::-moz-focus-inner, button::-moz-focus-inner {
   border: 0;
   padding: 0;
@@ -131,16 +105,16 @@ input[type="submit"], button {
   padding: 0.4rem 1.4rem;
   text-align: center;
 }
-input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover, button:hover {
+input[type="submit"]:hover, input[type="button"]:hover, button:hover {
   background: #d9d9d9;
   color: #000;
 }
-input[type="submit"][disabled], input[type="reset"][disabled], button[disabled], html input[disabled] {
+input[type="submit"][disabled], button[disabled], html input[disabled] {
   background: #e6e6e6;
   color: #b3b3b3;
   cursor: default;
 }
-input[type="text"], input[type="password"], input[type="email"], input[type="url"], input[type="phone"], input[type="tel"], input[type="number"], input[type="datetime"], input[type="date"], input[type="month"], input[type="color"], input[type="time"], input[type="search"], input[type="range"], input[type="file"], input[type="datetime-local"], select, textarea {
+input[type="text"], input[type="file"], textarea {
   border: 1px solid #ccc;
   margin-bottom: 1.2rem;
   padding: 0.4rem 0.6rem;
@@ -213,5 +187,14 @@ img {
   }
 }
 footer {
-  max-width: 464px;
+  flex-shrink: 0;
+  max-width: 800px;
+}
+header {
+  background-color: #f0450b;
+  height: 100px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
