@@ -36,6 +36,7 @@
     "express-static-gzip": "1.1.3",
     "forever": "1.0.0",
     "glob": "7.1.3",
+    "mime": "2.4.1",
     "nodemon": "1.18.10",
     "sanitize-filename": "1.6.1",
     "unique-slug": "2.0.1"

@@ -7,7 +7,7 @@ module.exports = () =>
         <form action="/upload" method="post" enctype="multipart/form-data">
           <div>
             <span>Max file size: 50MB</span>
-            <input type="file" id="ffile" name="file" autocomplete="off">
+            <input accept="audio/*" type="file" id="ffile" name="file" autocomplete="off">
             <button type="submit">Submit</button>
           </div>
         </form>

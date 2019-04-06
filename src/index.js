@@ -3,6 +3,7 @@ const { extname, resolve } = require('path')
 const glob = require('glob')
 const express = require('express')
 const bb = require('express-busboy')
+const mime = require('mime')
 const sanitizeFilename = require('sanitize-filename')
 const { getSlug, handleError, listenLog, moveFile } = require('./util')
 const { homePage, filePage } = require('./pages')
@@ -23,7 +24,9 @@ app.post('/upload', (req, res) => {
   const ext = req.query.ext ? sanitizeFilename(req.query.ext) : extname(file.filename)
   const getName = (n) => `${audioPath}/${n}${ext}`
 
-  if (ext.toLowerCase() === '.php') return handleError(res, 'lol go away')
+  if (!/audio/i.test(mime.getType(file.filename))) {
+    return handleError(res, 'Invalid audio file')
+  }
 
   let name = getSlug(file.file)
   const fn = file.filename.replace(ext, '')
