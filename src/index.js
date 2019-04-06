@@ -7,9 +7,9 @@ const mime = require('mime')
 const sanitizeFilename = require('sanitize-filename')
 const { getSlug, handleError, listenLog, moveFile } = require('./util')
 const { homePage, filePage } = require('./pages')
-const { audioPath } = require('./config')
 const app = express()
 const pub = resolve(__dirname, '..', 'public')
+const audioPath = resolve(__dirname, '..', 'files')
 
 app.use(express.static(pub))
 app.use('/files', express.static(audioPath))
@@ -55,9 +55,6 @@ app.post('/upload', (req, res) => {
     res.redirect(`/${name}`)
   })
 })
-
-const stripExt = (s = '') =>
-  s.replace(/\.[^/.]+$/, '')
 
 app.get('/:id', (req, res) => {
   const id = req.params.id

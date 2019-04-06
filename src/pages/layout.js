@@ -1,13 +1,13 @@
-const config = require('../config')
 const svgLogo = require('fs').readFileSync('public/logo.svg').toString()
 const paypalSection = require('./paypal')
+const legalNotice = require('./legal')
 
 module.exports = (body) => `
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>${config.name}</title>
+    <title>some.audio</title>
     <link rel="stylesheet" type="text/css" href="/styles.css">
     <meta name="description" content="Simple, anonymous audio file host.">
     <meta name="author" content="Zac Anger">
@@ -34,7 +34,7 @@ module.exports = (body) => `
     <footer>
       <small>
         ${paypalSection}
-        ${config.legal}
+        ${legalNotice}
       </small>
     </footer>
     <script type="text/javascript">

@@ -3,7 +3,6 @@ const { resolve } = require('path')
 const { createHash } = require('crypto')
 const cluster = require('cluster')
 const uniqueSlug = require('unique-slug')
-const config = require('./config')
 const { errorPage } = require('./pages')
 
 const getSlug = (s) =>
@@ -32,12 +31,13 @@ const moveFile = (oldPath, newPath, cb) => {
   })
 }
 
+const port = process.env.PORT || 3000
 const listenLog = (app) => {
-  app.listen(config.port, () => {
+  app.listen(port, () => {
     const clusterMessage = process.env.NODE_ENV === 'production'
       ? `worker ${cluster.worker.id} `
       : ''
-    console.log(`${config.name} ${clusterMessage}listening on ${config.port}`)
+    console.log(`some.audio ${clusterMessage}listening on ${port}`)
   })
 }
 
@@ -46,9 +46,13 @@ const handleError = (res, err) => {
   res.send(errorPage(err))
 }
 
+const stripExt = (s = '') =>
+  s.replace(/\.[^/.]+$/, '')
+
 module.exports = {
   getSlug,
   handleError,
   listenLog,
   moveFile,
+  stripExt,
 }
