@@ -1,4 +1,4 @@
-const { existsSync, statSync } = require('fs')
+const { existsSync } = require('fs')
 const { extname, resolve } = require('path')
 const glob = require('glob')
 const express = require('express')
@@ -9,7 +9,6 @@ const { homePage, filePage } = require('./pages')
 const { audioPath } = require('./config')
 const app = express()
 const pub = resolve(__dirname, '..', 'public')
-const statCache = {}
 
 app.use(express.static(pub))
 app.use('/files', express.static(audioPath))
@@ -62,24 +61,12 @@ app.get('/:id', (req, res) => {
   glob('*.*', { cwd: audioPath }, (err, files) => {
     if (err) throw err
 
-    const fullFiles = files.map((f) => {
-      if (statCache[f]) return statCache[f]
-      const stat = statSync(`${audioPath}/${f}`)
-      const o = {
-        name: f,
-        size: stat.size,
-        mtime: stat.mtime
-      }
-      statCache[f] = o
-      return o
-    })
-
-    const withoutExtension = fullFiles.map((f) => stripExt(f.name))
+    const withoutExtension = files.map(stripExt)
     if (!withoutExtension.includes(id)) {
       return handleError(res, 'No file found')
     }
 
-    const fileName = fullFiles.find((f) => stripExt(f.name) === id).name
+    const fileName = files.find((f) => stripExt(f) === id)
     res.send(filePage('/files/' + fileName))
   })
 })
