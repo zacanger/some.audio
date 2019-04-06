@@ -1,5 +1,4 @@
 const layout = require('./layout')
-const { name } = require('../config')
 
 module.exports = (id) =>
   layout(`

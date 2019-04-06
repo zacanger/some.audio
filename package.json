@@ -2,9 +2,10 @@
   "name": "some.audio",
   "description": "audio host",
   "version": "0.0.1",
+  "private": true,
   "author": {
-    "name": "Zac Anger",
     "email": "zac@zacanger.com",
+    "name": "Zac Anger",
     "url": "http://zacanger.com"
   },
   "license": "MIT",
@@ -12,17 +13,20 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "forever start -a -l f.log -e e.log -o o.log index.js",
-    "test": "npm run test:lint",
+    "test": "npm run test:lint && sortpack",
     "test:lint": "eslint -c .eslintrc.json src"
   },
-  "homepage": "http://img.zacanger.com",
+  "homepage": "http://some.audio",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zacanger/dotcom"
+    "url": "https://github.com/zacanger/some.audio"
   },
-  "bugs": "https://github.com/zacanger/dotcom/issues",
+  "bugs": "https://github.com/zacanger/some.audio/issues",
   "keywords": [
-    "imghost"
+    "audio",
+    "host",
+    "mp3",
+    "music"
   ],
   "dependencies": {
     "compression": "1.7.4",
@@ -31,6 +35,7 @@
     "express-busboy": "7.0.1",
     "express-static-gzip": "1.1.3",
     "forever": "1.0.0",
+    "glob": "7.1.3",
     "nodemon": "1.18.10",
     "sanitize-filename": "1.6.1",
     "unique-slug": "2.0.1"
@@ -38,10 +43,12 @@
   "devDependencies": {
     "babel-eslint": "10.0.1",
     "eslint": "5.16.0",
-    "eslint-config-jane": "2.4.5",
+    "eslint-config-zacanger": "3.4.2",
     "eslint-plugin-babel": "5.3.0",
+    "eslint-plugin-import": "2.16.0",
+    "eslint-plugin-node": "8.0.1",
     "eslint-plugin-promise": "4.1.1",
-    "eslint-plugin-unicorn": "8.0.1"
-  },
-  "private": true
+    "eslint-plugin-unicorn": "8.0.1",
+    "sortpack": "1.1.4"
+  }
 }
