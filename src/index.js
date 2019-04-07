@@ -5,7 +5,7 @@ const express = require('express')
 const bb = require('express-busboy')
 const mime = require('mime')
 const sanitizeFilename = require('sanitize-filename')
-const { homePage, filePage } = require('./pages')
+const { aboutPage, homePage, filePage } = require('./pages')
 const {
   getSlug,
   handleError,
@@ -23,6 +23,8 @@ app.use('/files', express.static(audioPath))
 bb.extend(app, { upload: true })
 
 app.get('/', (req, res) => { res.send(homePage()) })
+
+app.get('/about', (req, res) => { res.send(aboutPage()) })
 
 app.post('/upload', (req, res) => {
   if (!req.files || !req.files.file) return handleError(res, 'No file specified.')

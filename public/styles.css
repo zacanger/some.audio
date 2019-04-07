@@ -43,15 +43,21 @@ body {
   background: #fff;
   padding: 1rem;
   max-width: 900px;
-  margin-left: 2rem;
   display: flex;
   flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .content {
   margin-top: 120px;
   flex: 1 0 auto;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
 }
+
 p { margin-top: 0; }
 
 h1 {
@@ -63,23 +69,6 @@ h1 {
   letter-spacing: -.1rem;
 }
 strong { font-weight: 600; }
-
-a {
-  -webkit-transition: color .4s;
-  transition: color .4s;
-  color: #265C83;
-}
-a:link, a:visited {
-  color: #265C83;
-}
-a:hover {
-  color: #7FDBFF;
-}
-a:active {
-  -webkit-transition: color .3s;
-  transition: color .3s;
-  color: #007BE6;
-}
 
 img {
   border: 0;
@@ -109,7 +98,7 @@ img {
 
 footer {
   flex-shrink: 0;
-  max-width: 800px;
+  text-align: center;
 }
 
 header {
@@ -119,8 +108,33 @@ header {
   width: 100%;
   top: 0;
   left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
+header a {
+  align-self: flex-end;
+  color: #F1E3FC;
+}
+header a {
+  -webkit-transition: color .4s;
+  transition: color .4s;
+}
+header a:link, a:visited {
+  color: #ffffff;
+}
+header a:hover {
+  color: #c1c1c1;
+}
+header a:active {
+  -webkit-transition: color .3s;
+  transition: color .3s;
+  color: #c1c1c1;
+}
+.content a {
+  color: black;
+}
 input[type="file"] {
   width: 0.1px;
   height: 0.1px;

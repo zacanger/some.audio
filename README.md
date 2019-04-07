@@ -2,18 +2,19 @@
 
 Simple, anonymous audio file host
 
+[Support this project](https://paypal.me/zacanger)
+
 ## TODO
 
-* use s3 or similar for file storage
-* set up a db to store info about files
-* change files view to include info (title, artist, description?)
-* change form to allow for info
-* expire files after some time?
-* rewrite in something hipster (rust? go?)
-* make it not look like crap
-* get it running somewhere
-* https
-* set up ci/cd/cd (circle?)
-* tests
-* users/auth (oauth?) + 'my files' type of thing
-* validate input file size, reject if > ?
+* Use S3 or DO Spaces or similar for storage
+* Set up DB for file meta info
+* Change files view to include meta info
+* Change form to allow for meta info
+* Expire files after some time?
+* Rewrite in something hipster (Rust?)
+* Make it look less bad
+* Set up CI/CD/CD (Circle?)
+* Write at least one goddamn test
+* Users? Auth? OAuth?
+* Validate input file size and reject
+* Better player view

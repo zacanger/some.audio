@@ -13,6 +13,7 @@ module.exports = (body) => `
     <meta name="author" content="Zac Anger">
     <meta name="keywords" content="audio, host, mp3, music, filehost">
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://some.audio">
     <meta property="og:title" content="some.audio">
@@ -27,6 +28,7 @@ module.exports = (body) => `
   <body>
     <header>
       <a href="/">${svgLogo}</a>
+      <a href="/about">about</a>
     </header>
     <div class="content">
       ${body}
