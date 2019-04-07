@@ -21,13 +21,7 @@ const db = monk(process.env.MONGO_URI || 'localhost/someaudio')
 
 app.use(express.static(pub))
 app.use('/files', express.static(audioPath))
-bb.extend(app, {
-  upload: true,
-  limits: {
-    // 20MB
-    fileSize: 20000000
-  }
-})
+bb.extend(app, { upload: true })
 
 app.get('/', (req, res) => { res.send(homePage()) })
 
