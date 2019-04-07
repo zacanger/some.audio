@@ -18,6 +18,14 @@ const audioPath = resolve(__dirname, '..', 'files')
 const monk = require('monk')
 const db = monk(process.env.MONGO_URI || 'localhost/someaudio')
 
+const validateId = (i) => {
+  try {
+    return !!monk.id(i)
+  } catch (_) {
+    return false
+  }
+}
+
 app.use(express.static(pub))
 app.use('/files', express.static(audioPath))
 bb.extend(app, {
@@ -74,19 +82,32 @@ app.get('/:id', (req, res) => {
 
     const fileName = files.find((f) => stripExt(f) === id)
 
-    db.get('files')
-      .findOne({ _id: id })
-      .then(({ artist, description, title }) => {
-        res.send(filePage({
-          artist,
-          description,
-          file: '/files/' + fileName,
-          title,
-        }))
-      })
-      .catch((err) => {
-        handleError(res, err.message || err)
-      })
+    if (validateId(id)) {
+      db.get('files')
+        .findOne({ _id: id })
+        .then(({
+          artist = '',
+          description = '',
+          title = ''
+        } = {}) => {
+          res.send(filePage({
+            artist,
+            description,
+            file: '/files/' + fileName,
+            title,
+          }))
+        })
+        .catch((err) => {
+          handleError(res, err.message || err)
+        })
+    } else {
+      res.send(filePage({
+        artist: '',
+        description: '',
+        file: '/files/' + fileName,
+        title: '',
+      }))
+    }
   })
 })
 
