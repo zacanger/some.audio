@@ -6,15 +6,14 @@ Simple, anonymous audio file host
 
 ## TODO
 
+* Make it look less bad
+* Better player view
+* Make it secure
 * Use S3 or DO Spaces or similar for storage
-* Set up DB for file meta info
-* Change files view to include meta info
-* Change form to allow for meta info
+* Move off Mongo to real DB
 * Expire files after some time?
 * Rewrite in something hipster (Rust?)
-* Make it look less bad
 * Set up CI/CD/CD (Circle?)
 * Write at least one goddamn test
 * Users? Auth? OAuth?
 * Validate input file size and reject
-* Better player view

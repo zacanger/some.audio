@@ -1,13 +1,11 @@
-const { existsSync } = require('fs')
 const { extname, resolve } = require('path')
 const glob = require('glob')
 const express = require('express')
 const bb = require('express-busboy')
-const mime = require('mime')
 const sanitizeFilename = require('sanitize-filename')
+const mime = require('mime')
 const { aboutPage, homePage, filePage } = require('./pages')
 const {
-  getSlug,
   handleError,
   listenLog,
   moveFile,
@@ -17,6 +15,9 @@ const {
 const app = express()
 const pub = resolve(__dirname, '..', 'public')
 const audioPath = resolve(__dirname, '..', 'files')
+
+const monk = require('monk')
+const db = monk(process.env.MONGO_URI || 'localhost/someaudio')
 
 app.use(express.static(pub))
 app.use('/files', express.static(audioPath))
@@ -29,40 +30,29 @@ app.get('/about', (req, res) => { res.send(aboutPage()) })
 app.post('/upload', (req, res) => {
   if (!req.files || !req.files.file) return handleError(res, 'No file specified.')
 
+  const { title = '', artist = '', description = '' } = req.body
   const file = req.files.file
   const ext = req.query.ext ? sanitizeFilename(req.query.ext) : extname(file.filename)
-  const getName = (n) => `${audioPath}/${n}${ext}`
 
   if (!/audio/i.test(mime.getType(file.filename))) {
     return handleError(res, 'Invalid audio file')
   }
 
-  let name = getSlug(file.file)
-  const fn = file.filename.replace(ext, '')
-
-  if (existsSync(getName(name))) {
-    name = `${fn}-${name}`
-  }
-
-  if (existsSync(getName(name))) {
-    name = `${name.replace(`${fn}-`, '')}-${fn}`
-  }
-
-  if (existsSync(getName(name))) {
-    return handleError(
-      res,
-      'Could not generate semi-unique filename based on hash of file contents and filename.'
-    )
-  }
-
-  moveFile(file.file, getName(name), (err) => {
-    if (err) {
-      console.trace(err)
-      return
-    }
-
-    res.redirect(`/${name}`)
-  })
+  const getNewPath = (n) => `${audioPath}/${n}${ext}`
+  db.get('files')
+    .insert({ title, artist, description })
+    .then(({ _id }) => {
+      moveFile(file.file, getNewPath(_id), (err) => {
+        if (err) {
+          console.trace(err)
+          return
+        }
+        res.redirect(`/${_id}`)
+      })
+    })
+    .catch((err) => {
+      handleError(res, err.message || err)
+    })
 })
 
 app.get('/:id', (req, res) => {
@@ -76,12 +66,20 @@ app.get('/:id', (req, res) => {
     }
 
     const fileName = files.find((f) => stripExt(f) === id)
-    res.send(filePage({
-      artist: 'todo',
-      description: 'todo',
-      file: '/files/' + fileName,
-      title: 'todo',
-    }))
+
+    db.get('files')
+      .findOne({ _id: id })
+      .then(({ artist, description, title }) => {
+        res.send(filePage({
+          artist,
+          description,
+          file: '/files/' + fileName,
+          title,
+        }))
+      })
+      .catch((err) => {
+        handleError(res, err.message || err)
+      })
   })
 })
 

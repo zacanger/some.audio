@@ -1,16 +1,6 @@
 const fs = require('fs')
-const { resolve } = require('path')
-const { createHash } = require('crypto')
 const cluster = require('cluster')
-const uniqueSlug = require('unique-slug')
 const { errorPage } = require('./pages')
-
-const getSlug = (s) =>
-  uniqueSlug(
-    createHash('md5').update(
-      fs.readFileSync(
-        resolve(s)
-      )).digest('base64'))
 
 const moveFile = (oldPath, newPath, cb) => {
   fs.rename(oldPath, newPath, (err) => {
@@ -50,7 +40,6 @@ const stripExt = (s = '') =>
   s.replace(/\.[^/.]+$/, '')
 
 module.exports = {
-  getSlug,
   handleError,
   listenLog,
   moveFile,

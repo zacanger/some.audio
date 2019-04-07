@@ -15,15 +15,11 @@ module.exports = ({ artist, title, description, file }) =>
             <source src="${file}">
           </audio>
         </noscript>
-
-        <!--
         <div classname="meta">
           <strong><span>${title} &middot; ${artist}</span></strong>
           <br>
           <span>${description}</span>
         </div>
-        -->
-
       </div>
     </div>
   `)
