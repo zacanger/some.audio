@@ -1,6 +1,25 @@
 const layout = require('./layout')
 
-module.exports = ({ artist, title, description, file }) =>
+const getMetaSection = ({ artist, title, description }) => {
+  const at = (title || artist)
+    ? `<strong><span>${title}${
+      artist
+        ? ' &middot; ' + artist
+        : ''
+      }</span></strong>`
+    : ''
+  const d = description
+    ? `<br><span>${description}</span>`
+    : ''
+  return `${at}\n${d}\n`
+}
+
+module.exports = ({
+  artist = '',
+  description = '',
+  file = '',
+  title = '',
+}) =>
   layout(`
     <div>
       <script type="text/javascript" src="microne.js"></script>
@@ -16,9 +35,7 @@ module.exports = ({ artist, title, description, file }) =>
           </audio>
         </noscript>
         <div classname="meta">
-          <strong><span>${title} &middot; ${artist}</span></strong>
-          <br>
-          <span>${description}</span>
+          ${getMetaSection({ artist, title, description })}
         </div>
       </div>
     </div>
