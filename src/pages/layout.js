@@ -39,11 +39,6 @@ module.exports = (body) => `
         ${legalNotice}
       </small>
     </footer>
-    <script type="text/javascript">
-      console.log('')
-      console.log('    hello')
-      console.log('')
-    </script>
   </body>
 </html>
 `
