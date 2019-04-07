@@ -1,5 +1,6 @@
 const layout = require('./layout')
 
+/* eslint-disable max-len */
 module.exports = () =>
   layout(`
     <div>

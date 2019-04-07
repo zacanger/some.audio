@@ -11,6 +11,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
+    "prd": "NODE_ENV=production PORT=80 forever start -a -l f.log -e e.log -o o.log index.js",
     "start": "nodemon index.js",
     "test": "npm run test:lint && sortpack",
     "test:lint": "eslint -c .eslintrc.json src"
@@ -33,6 +34,7 @@
     "express": "4.16.4",
     "express-busboy": "7.0.1",
     "express-static-gzip": "1.1.3",
+    "forever": "1.0.0",
     "glob": "7.1.3",
     "mime": "2.4.1",
     "nodemon": "1.18.10",
