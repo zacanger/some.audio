@@ -1,5 +1,17 @@
 const layout = require('./layout')
 
+const copyScript = `
+document.querySelector('.url').innerText = window.location.href;
+function copyLink (ev) {
+  var range = window.document.createRange();
+  range.selectNode(document.querySelector('.url'));
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(range);
+  var success = window.document.execCommand('copy');
+}
+document.querySelector('.copy-link').onclick = copyLink;
+`
+
 const getMetaSection = ({ artist, title, description }) => {
   const at = (title || artist)
     ? `<strong><span>${title}${
@@ -37,6 +49,13 @@ module.exports = ({
         <div classname="meta">
           ${getMetaSection({ artist, title, description })}
         </div>
+        <div class="copy-link">
+          <small><span>Click to copy link</span></small>
+          <small><span class="url"></span></small>
+        </div>
       </div>
+      <script type="text/javascript">
+        ${copyScript}
+      </script>
     </div>
   `)

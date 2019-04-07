@@ -301,8 +301,17 @@ input[type="file"] + label:hover {
 
 #player {
   margin-bottom: 32px;
+  width: 100px;
+  height: 100px;
 }
 
 #file-picker, input[type="file"], .submit-row {
   align-self: flex-end;
+}
+
+.copy-link {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
 }
