@@ -5,18 +5,9 @@ some.audio is a free, simple, and anonymous audio hosting service,
 built to fill the space between Tumblr and SoundCloud and to provide
 a similar experience to Pastebin.
 <br>
-This project is free software, available at
-<a
-  href="https://github.com/zacanger/some.audio"
-  target="_blank"
-  rel="noopener noreferrer nofollow"
->
-  GitHub
-</a>.
-<br>
 This is a personal project without funding, so please consider
 donating (see the PayPal button below).
-<pre>
+<pre style="text-align:left;">
 ## TODO
 
 * Use S3 or DO Spaces or similar for storage
