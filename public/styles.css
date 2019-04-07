@@ -38,7 +38,7 @@ body {
   font-size: 1.5em;
   line-height: 1.6;
   font-weight: 400;
-  font-family: "Montserrat", "Helvetia Neue", "Noto Sans", sans-serif;
+  font-family: "Montserrat", "Helvetia Neue", "Noto Sans", "Ubuntu", sans-serif;
   color: #303330;
   background: #fff;
   padding: 1rem;
@@ -50,7 +50,7 @@ body {
 }
 
 .content {
-  margin-top: 120px;
+  margin-top: 100px;
   flex: 1 0 auto;
   display: flex;
   align-items: center;
@@ -97,6 +97,7 @@ img {
 }
 
 footer {
+  padding-top: 32px;
   flex-shrink: 0;
   text-align: center;
 }
@@ -118,8 +119,8 @@ header a {
   color: #F1E3FC;
 }
 header a {
-  -webkit-transition: color .4s;
-  transition: color .4s;
+  -webkit-transition: color .3s;
+  transition: color .3s;
 }
 header a:link, a:visited {
   color: #ffffff;
@@ -154,7 +155,7 @@ input[type="file"] + label {
   display: inline-block;
   overflow: hidden;
   padding: 0.625rem 1.25rem;
-  transition: all .2s;
+  transition: all .3s;
 }
 
 input[type="file"]:focus + label {
@@ -204,10 +205,11 @@ input[type="file"] + label:hover {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  -webkit-transition-duration: 0.4s;
-  transition-duration: 0.4s;
+  -webkit-transition-duration: .3s;
+  transition-duration: .3s;
   cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .upload-form button[type="submit"]:hover {
@@ -218,4 +220,89 @@ input[type="file"] + label:hover {
 .logo-link {
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.upload-form input, .upload-form textarea {
+  border: 2px solid #333;
+  font-size: 1.2em;
+  padding: 0.25em 0.5em 0.3125em;
+  color: #111;
+  border-radius: 0.25em;
+  background: transparent;
+  transition: all ease-in-out .3s;
+}
+.upload-form input:focus, .upload-form textarea:focus {
+  outline: none;
+  color: #222;
+  border-color: #ccc;
+}
+
+.upload-form input[type="text"],
+.upload-form textarea {
+  font-family: "Montserrat", "Helvetia Neue", "Noto Sans", "Ubuntu", sans-serif;
+}
+
+.upload-form textarea::placeholder,
+.upload-form ::-webkit-input-placeholder,
+.upload-form ::-webkit-textarea-placeholder {
+  color: #444;
+  text-shadow: 0 0 0.125em transparent;
+  transition: all .3s;
+  font-family: "Montserrat", "Helvetia Neue", "Noto Sans", "Ubuntu", sans-serif;
+}
+
+.upload-form input:focus::-webkit-input-placeholder,
+.upload-form input:focus::-webkit-textarea-placeholder {
+  opacity: 0.5;
+}
+
+.upload-form ::-moz-placeholder {
+  color: #333;
+  text-shadow: 0 0 0.125em transparent;
+  transition: all .3s;
+}
+
+.upload-form input:focus::-moz-placeholder,
+.upload-form textarea:focus::-moz-placeholder {
+  opacity: 0.5;
+}
+
+.upload-form :-ms-input-placeholder,
+.upload-form :-ms-textarea-placeholder {
+  color: #333;
+  text-shadow: 0 0 0.125em transparent;
+  transition: all .3s;
+}
+
+.upload-form input:focus:-ms-input-placeholder,
+.upload-form textarea:focus:-ms-textarea-placeholder {
+  opacity: 0.5;
+}
+
+.upload-form input, .upload-form textarea {
+  box-sizing: border-box;
+  width: 300px;
+}
+
+.upload-form textarea {
+  margin-left: 8px;
+}
+
+.upload-form label {
+  margin-top: 8px;
+}
+
+.player-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#player {
+  margin-bottom: 32px;
+}
+
+#file-picker, input[type="file"], .submit-row {
+  align-self: flex-end;
 }

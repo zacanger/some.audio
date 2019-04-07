@@ -3,6 +3,7 @@ const glob = require('glob')
 const express = require('express')
 const bb = require('express-busboy')
 const sanitizeFilename = require('sanitize-filename')
+const compression = require('compression')
 const { aboutPage, homePage, filePage } = require('./pages')
 const {
   handleError,
@@ -26,6 +27,7 @@ const validateId = (i) => {
   }
 }
 
+app.use(compression())
 app.use(express.static(pub))
 app.use('/files', express.static(audioPath))
 bb.extend(app, {
