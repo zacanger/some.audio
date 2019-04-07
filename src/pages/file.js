@@ -5,12 +5,6 @@ module.exports = ({ artist, title, description, file }) =>
     <div>
       <script type="text/javascript" src="microne.js"></script>
       <div style="margin-top:32px;">
-        <!--
-        <div classname="meta">
-          <span>${title} &middot; ${artist}</span>
-          <span>${description}></span>
-        </div>
-        -->
         <div id="player" style="width:100px;height:100px;"></div>
         <script type="text/javascript">
           var m = new Microne(document.getElementById('player'));
@@ -21,6 +15,15 @@ module.exports = ({ artist, title, description, file }) =>
             <source src="${file}">
           </audio>
         </noscript>
+
+        <!--
+        <div classname="meta">
+          <strong><span>${title} &middot; ${artist}</span></strong>
+          <br>
+          <span>${description}</span>
+        </div>
+        -->
+
       </div>
     </div>
   `)

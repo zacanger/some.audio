@@ -5,8 +5,15 @@ const express = require('express')
 const bb = require('express-busboy')
 const mime = require('mime')
 const sanitizeFilename = require('sanitize-filename')
-const { getSlug, handleError, listenLog, moveFile } = require('./util')
 const { homePage, filePage } = require('./pages')
+const {
+  getSlug,
+  handleError,
+  listenLog,
+  moveFile,
+  stripExt,
+} = require('./util')
+
 const app = express()
 const pub = resolve(__dirname, '..', 'public')
 const audioPath = resolve(__dirname, '..', 'files')
