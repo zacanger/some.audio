@@ -8,10 +8,19 @@ module.exports = () =>
         <form action="/upload" method="post" enctype="multipart/form-data">
           <div class="upload-form">
             <script type="text/javascript">
-              function showFile(files) {
+              function showFile (files) {
+                var inputLabel = document.getElementById('file-picker');
+                var inputEl = document.getElementById('file');
                 var filename = files[0].name;
-                document.getElementById('file-picker').innerText = filename;
-              }
+                inputLabel.innerText = filename;
+                if (typeof FileReader !== 'undefined') {
+                  var size = inputEl.files[0].size / 1024 / 1024;
+                  if (size > 20) {
+                    inputLabel.innerText = 'File is too large!';
+                    inputEl.value = '';
+                  }
+                }
+            }
             </script>
             <input required accept="audio/*" type="file" id="file" name="file" autocomplete="off" onchange="showFile(this.files)">
             <label for="file" id="file-picker">

@@ -15,4 +15,3 @@ Simple, anonymous audio file host
 * Set up CI/CD/CD (Circle?)
 * Write at least one goddamn test
 * Users? Auth? OAuth?
-* Validate input file size and reject

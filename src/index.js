@@ -3,7 +3,6 @@ const glob = require('glob')
 const express = require('express')
 const bb = require('express-busboy')
 const sanitizeFilename = require('sanitize-filename')
-const mime = require('mime')
 const { aboutPage, homePage, filePage } = require('./pages')
 const {
   handleError,
@@ -21,7 +20,11 @@ const db = monk(process.env.MONGO_URI || 'localhost/someaudio')
 
 app.use(express.static(pub))
 app.use('/files', express.static(audioPath))
-bb.extend(app, { upload: true })
+bb.extend(app, {
+  upload: true,
+  // 20MB
+  limits: { fileSize: 20000000 }
+})
 
 app.get('/', (req, res) => { res.send(homePage()) })
 
@@ -34,7 +37,11 @@ app.post('/upload', (req, res) => {
   const file = req.files.file
   const ext = req.query.ext ? sanitizeFilename(req.query.ext) : extname(file.filename)
 
-  if (!/audio/i.test(mime.getType(file.filename))) {
+  if (file.truncated) {
+    return handleError(res, 'File is too large')
+  }
+
+  if (!/audio/i.test(file.mimetype)) {
     return handleError(res, 'Invalid audio file')
   }
 
