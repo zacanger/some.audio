@@ -1,4 +1,5 @@
 const { extname, resolve } = require('path')
+const { readdir } = require('fs')
 const glob = require('glob')
 const express = require('express')
 const bb = require('express-busboy')
@@ -40,6 +41,15 @@ app.get('/', (req, res) => { res.send(homePage()) })
 
 app.get('/about', (req, res) => { res.send(aboutPage()) })
 
+app.get('/diag', (req, res) => {
+  readdir(audioPath, (err, files) => {
+    if (err) {
+      throw err
+    }
+    res.json({ count: files.length })
+  })
+})
+
 app.post('/upload', (req, res) => {
   if (!req.files || !req.files.file) return handleError(res, 'No file specified.')
 
@@ -75,7 +85,9 @@ app.post('/upload', (req, res) => {
 app.get('/:id', (req, res) => {
   const id = req.params.id
   glob('*.*', { cwd: audioPath }, (err, files) => {
-    if (err) throw err
+    if (err) {
+      throw err
+    }
 
     const withoutExtension = files.map(stripExt)
     if (!withoutExtension.includes(id)) {
