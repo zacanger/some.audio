@@ -27,7 +27,7 @@ module.exports = (body) => `
   </head>
   <body>
     <header>
-      <a href="/">${svgLogo}</a>
+      <a class="logo-link" href="/">${svgLogo}</a>
       <a href="/about">about</a>
     </header>
     <div class="content">

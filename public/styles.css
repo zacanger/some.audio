@@ -180,5 +180,42 @@ input[type="file"] + label {
 button[type="submit"],
 input[type="file"]:focus + label,
 input[type="file"] + label:hover {
-  background-color: #F48E6B;
+  background-color: #F1E3FC;
+  color: #f0450b;
+}
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.upload-form input {
+  margin: 0 0 0 8px;
+}
+
+.upload-form button[type="submit"] {
+  margin-top: 8px;
+  color: #F1E3FC;
+  background-color: #f0450b;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.upload-form button[type="submit"]:hover {
+  background-color: #F1E3FC;
+  color: #f0450b;
+}
+
+.logo-link {
+  margin-top: auto;
+  margin-bottom: auto;
 }

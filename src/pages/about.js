@@ -3,7 +3,6 @@ const layout = require('./layout')
 const todoText = `
 ## TODO
 
-* Make it look less bad
 * Better player view
 * Make it secure
 * Use S3 or DO Spaces or similar for storage

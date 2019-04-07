@@ -6,7 +6,7 @@ module.exports = () =>
     <div>
       <div style="margin-top:32px;">
         <form action="/upload" method="post" enctype="multipart/form-data">
-          <div>
+          <div class="upload-form">
             <script type="text/javascript">
               function showFile(files) {
                 var filename = files[0].name;
@@ -20,16 +20,12 @@ module.exports = () =>
                 </svg>
                 <span>Choose a file&hellip;</span>
               </label>
-              <br>
               <label for="artist">Title:</label>
-              <input name="title" placeholder="title" id="title" type="text">
-              <br>
+              <input name="title" placeholder="Awesome Song" id="title" type="text">
               <label for="artist">Artist:</label>
-              <input name="artist" placeholder="artist" id="artist" type="text">
-              <br>
+              <input name="artist" placeholder="The Best Band" id="artist" type="text">
               <label for="artist">Description:</label>
-              <input name="description" placeholder="description" id="description" type="text">
-              <br>
+              <input name="description" placeholder="This song is so awesome yo." id="description" type="text">
               <button type="submit">Submit</button>
             <br>
             <span>Max file size: 20MB</span>
