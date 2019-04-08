@@ -52,8 +52,7 @@ app.get('/', (req, res) => { res.send(homePage()) })
 
 app.all('/wp-admin', lolHandler)
 app.all('/wp-login', lolHandler)
-app.all('/wp-login.php', lolHandler)
-app.all('/action.php', lolHandler)
+app.all(/.php$/, lolHandler)
 
 app.get('/about', (req, res) => { res.send(aboutPage()) })
 
