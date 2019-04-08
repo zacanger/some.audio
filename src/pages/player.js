@@ -34,6 +34,7 @@ module.exports = ({
 }) =>
   layout(`
     <div>
+    <!--
       <script type="text/javascript" src="/player.js"></script>
       <div class="player-wrapper">
         <div id="player"></div>
@@ -51,13 +52,16 @@ module.exports = ({
           })
         </script>
         <noscript>
+        -->
           <audio controls>
             <source src="${file}">
           </audio>
           <div classname="meta">
             ${getMetaSection({ artist, title, description })}
           </div>
+          <!--
         </noscript>
+        -->
         <div class="copy-link">
           <small><span>Click to copy link</span></small>
           <small><span class="url"></span></small>

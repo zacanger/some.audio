@@ -1,11 +1,11 @@
 const aboutPage = require('./about')
 const errorPage = require('./error')
-const filePage = require('./file')
 const homePage = require('./home')
+const playerPage = require('./player')
 
 module.exports = {
   aboutPage,
   errorPage,
-  filePage,
   homePage,
+  playerPage,
 }

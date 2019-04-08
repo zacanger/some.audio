@@ -212,6 +212,13 @@ const formatTime = (time) => {
       }
     }
 
+    // quick hack to get mobile working
+    function resumeAudio () {
+      ctx.resume()
+      document.removeEventListener('click', resumeAudio)
+    }
+    document.addEventListener('click', resumeAudio)
+
     this.updateTime = function () {
       if (this_.isPlaying) {
         const time = this.currentTime

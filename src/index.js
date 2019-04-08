@@ -6,7 +6,7 @@ const bb = require('express-busboy')
 const sanitizeFilename = require('sanitize-filename')
 const compression = require('compression')
 const helmet = require('helmet')
-const { aboutPage, homePage, filePage } = require('./pages')
+const { aboutPage, homePage, playerPage } = require('./pages')
 const {
   handleError,
   listenLog,
@@ -121,7 +121,7 @@ app.get('/:id', (req, res) => {
           description = '',
           title = ''
         } = {}) => {
-          res.send(filePage({
+          res.send(playerPage({
             artist,
             description,
             file: '/files/' + fileName,
@@ -132,7 +132,7 @@ app.get('/:id', (req, res) => {
           handleError(res, err.message || err)
         })
     } else {
-      res.send(filePage({
+      res.send(playerPage({
         artist: '',
         description: '',
         file: '/files/' + fileName,
