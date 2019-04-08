@@ -32,11 +32,11 @@ module.exports = () =>
               </svg>
               <span>Choose a file&hellip;</span>
             </label>
-            <label for="title">Title:</label>
+            <label for="title">Title (optional):</label>
             <input name="title" id="title" type="text" placeholder="Awesome Song">
-            <label for="artist">Artist:</label>
+            <label for="artist">Artist (optional):</label>
             <input name="artist" placeholder="The Best Band" id="artist" type="text">
-            <label for="artist">Description:</label>
+            <label for="artist">Description (optional):</label>
             <textarea name="description" placeholder="This song is so awesome, yo." id="description" type="text" rows="2"></textarea>
             <span class="submit-row">Max file size: 20MB <button type="submit">Submit</button></span>
         </div>
