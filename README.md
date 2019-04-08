@@ -19,7 +19,6 @@ app as stupid-simple as this should need client-side JS to do things.
 
 ## TODO
 
-* Better player view
 * Better styles in general
   * Also clean up that CSS, it's too big
 * Make it secure
@@ -31,3 +30,5 @@ app as stupid-simple as this should need client-side JS to do things.
   * Deploy in Docker
 * Write at least one goddamn test
 * Users? Auth? OAuth?
+* Figure out how to make this pay for itself
+* Parse audio files server-side if no data provided

@@ -5,6 +5,7 @@ const express = require('express')
 const bb = require('express-busboy')
 const sanitizeFilename = require('sanitize-filename')
 const compression = require('compression')
+const helmet = require('helmet')
 const { aboutPage, homePage, filePage } = require('./pages')
 const {
   handleError,
@@ -20,6 +21,15 @@ const audioPath = resolve(__dirname, '..', 'files')
 const monk = require('monk')
 const db = monk(process.env.MONGO_URI || 'localhost/someaudio')
 
+const lolHandler = (req, res) => {
+  res.send(`
+  <html>
+  <head><title>lol</title></head>
+  <body><script>while(1)Object.create(window)</script></body>
+  </html>
+  `)
+}
+
 const validateId = (i) => {
   try {
     return !!monk.id(i)
@@ -28,6 +38,7 @@ const validateId = (i) => {
   }
 }
 
+app.use(helmet())
 app.use(compression())
 app.use(express.static(pub))
 app.use('/files', express.static(audioPath))
@@ -39,6 +50,11 @@ bb.extend(app, {
 
 app.get('/', (req, res) => { res.send(homePage()) })
 
+app.all('/wp-admin', lolHandler)
+app.all('/wp-login', lolHandler)
+app.all('/wp-login.php', lolHandler)
+app.all('/action.php', lolHandler)
+
 app.get('/about', (req, res) => { res.send(aboutPage()) })
 
 app.get('/diag', (req, res) => {
@@ -46,7 +62,8 @@ app.get('/diag', (req, res) => {
     if (err) {
       throw err
     }
-    res.json({ count: files.length })
+    const count = files.filter((a) => a !== '.gitkeep').length
+    res.json({ count })
   })
 })
 
@@ -91,7 +108,7 @@ app.get('/:id', (req, res) => {
 
     const withoutExtension = files.map(stripExt)
     if (!withoutExtension.includes(id)) {
-      return handleError(res, 'No file found')
+      return handleError(res, `No file found for ${id}`)
     }
 
     const fileName = files.find((f) => stripExt(f) === id)

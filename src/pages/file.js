@@ -34,21 +34,30 @@ module.exports = ({
 }) =>
   layout(`
     <div>
-      <script type="text/javascript" src="microne.js"></script>
+      <script type="text/javascript" src="/player.js"></script>
       <div class="player-wrapper">
-        <div id="player" style="width:100px;height:100px;"></div>
+        <div id="player"></div>
         <script type="text/javascript">
-          var m = new Microne(document.getElementById('player'));
-          m.source('${file}');
+          initPlayer('#player', {
+            audioSrc: '${file}',
+            title: '${title}',
+            description: '${description}',
+            author: '${artist}'
+          }, {
+            on: true,
+            bg: '#ecf0f1',
+            textColor: '#000',
+            lineColor: '#2ecc71'
+          })
         </script>
         <noscript>
           <audio controls>
             <source src="${file}">
           </audio>
+          <div classname="meta">
+            ${getMetaSection({ artist, title, description })}
+          </div>
         </noscript>
-        <div classname="meta">
-          ${getMetaSection({ artist, title, description })}
-        </div>
         <div class="copy-link">
           <small><span>Click to copy link</span></small>
           <small><span class="url"></span></small>
