@@ -6,8 +6,8 @@ Simple, anonymous audio file host
 
 ## Notes
 
-To install and run locally, `npm ci` and `npm start`. You'll need to either have
-Mongo running locally, or provide a MONGO_URI.
+To install and run locally, `npm ci` and `npm start`. You'll need to have
+Docker and Docker Compose installed.
 
 Deploy process is currently terrible: git push, ssh, git pull, forever restart.
 

@@ -95,7 +95,7 @@ cabal.project.local
 cabal.sandbox.config
 coverage
 data
-db
+/db/*
 dist
 dist-*
 lib-cov
