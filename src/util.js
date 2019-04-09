@@ -1,6 +1,10 @@
 const fs = require('fs')
+const { resolve } = require('path')
 const cluster = require('cluster')
+const monk = require('monk')
 const { errorPage } = require('./pages')
+
+const audioPath = resolve(__dirname, '..', 'files')
 
 const moveFile = (oldPath, newPath, cb) => {
   fs.rename(oldPath, newPath, (err) => {
@@ -53,9 +57,19 @@ const handleError = (req, res, err) => {
 const stripExt = (s = '') =>
   s.replace(/\.[^/.]+$/, '')
 
+const validateId = (i) => {
+  try {
+    return !!monk.id(i)
+  } catch (_) {
+    return false
+  }
+}
+
 module.exports = {
+  audioPath,
   handleError,
   listenLog,
   moveFile,
   stripExt,
+  validateId,
 }
