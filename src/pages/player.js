@@ -18,7 +18,7 @@ const getMetaSection = ({ artist, title, description }) => {
       artist
         ? ' &middot; ' + artist
         : ''
-      }</span></strong>`
+    }</span></strong>`
     : ''
   const d = description
     ? `<br><span>${description}</span>`
