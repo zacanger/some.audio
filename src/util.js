@@ -65,8 +65,15 @@ const validateId = (i) => {
   }
 }
 
+const badRoutes = [
+  '/wp-admin',
+  '/wp-login',
+  /.php$/,
+]
+
 module.exports = {
   audioPath,
+  badRoutes,
   handleError,
   listenLog,
   moveFile,

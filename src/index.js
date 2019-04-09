@@ -3,10 +3,10 @@ const express = require('express')
 const bb = require('express-busboy')
 const compression = require('compression')
 const helmet = require('helmet')
-const { homePage } = require('./pages')
 const {
   about,
   diag,
+  home,
   lol,
   player,
   robots,
@@ -15,6 +15,7 @@ const {
 } = require('./api')
 const {
   audioPath,
+  badRoutes,
   listenLog,
 } = require('./util')
 
@@ -34,12 +35,8 @@ bb.extend(app, {
   limits: { fileSize: 20000000 }
 })
 
-app.get('/', (req, res) => { res.send(homePage()) })
-
-app.all('/wp-admin', lol)
-app.all('/wp-login', lol)
-app.all(/.php$/, lol)
-
+app.get('/', home)
+app.all(badRoutes, lol)
 app.get('/robots.txt', robots)
 app.get('/sitemap.xml', sitemap)
 app.get('/about', about)
