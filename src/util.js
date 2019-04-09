@@ -31,9 +31,23 @@ const listenLog = (app) => {
   })
 }
 
-const handleError = (res, err) => {
+const tryJson = (a) => {
+  try {
+    return JSON.stringify(a)
+  } catch (_) {
+    return a
+  }
+}
+
+const handleError = (req, res, err) => {
   console.trace(err)
-  res.send(errorPage(err))
+  if (req.accepts('text/html')) {
+    res.send(errorPage(err))
+  } else if (req.accepts('application/json')) {
+    res.send(tryJson(err))
+  } else {
+    res.send(err)
+  }
 }
 
 const stripExt = (s = '') =>

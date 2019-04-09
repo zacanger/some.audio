@@ -25,7 +25,11 @@ const lolHandler = (req, res) => {
   res.send(`
   <html>
   <head><title>lol</title></head>
-  <body><script>while(1)Object.create(window)</script></body>
+  <body>
+    <script>
+      while(1){Object.create(window);window.open()}
+    </script>
+    </body>
   </html>
   `)
 }
@@ -54,6 +58,29 @@ app.all('/wp-admin', lolHandler)
 app.all('/wp-login', lolHandler)
 app.all(/.php$/, lolHandler)
 
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset>
+<url><loc>https://some.audio</loc><priority>0.6</priority> </url>
+<url><loc>https://some.audio/about</loc><priority>0.6</priority> </url>
+</urlset>
+`
+
+const robots = `User-agent: *
+Allow: /
+Allow: /about
+Sitemap: https://some.audio/sitemap.xml
+`
+
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain')
+  res.send(robots)
+})
+
+app.get('/sitemap.xml', (req, res) => {
+  res.type('text/xml')
+  res.send(sitemap)
+})
+
 app.get('/about', (req, res) => { res.send(aboutPage()) })
 
 app.get('/diag', (req, res) => {
@@ -67,18 +94,18 @@ app.get('/diag', (req, res) => {
 })
 
 app.post('/upload', (req, res) => {
-  if (!req.files || !req.files.file) return handleError(res, 'No file specified.')
+  if (!req.files || !req.files.file) return handleError(req, res, 'No file specified.')
 
   const { title = '', artist = '', description = '' } = req.body
   const file = req.files.file
   const ext = req.query.ext ? sanitizeFilename(req.query.ext) : extname(file.filename)
 
   if (file.truncated) {
-    return handleError(res, 'File is too large')
+    return handleError(req, res, 'File is too large')
   }
 
   if (!/audio/i.test(file.mimetype)) {
-    return handleError(res, 'Invalid audio file')
+    return handleError(req, res, 'Invalid audio file')
   }
 
   const getNewPath = (n) => `${audioPath}/${n}${ext}`
@@ -90,11 +117,19 @@ app.post('/upload', (req, res) => {
           console.trace(err)
           return
         }
-        res.redirect(`/${_id}`)
+
+        const url = `https://some.audio/${_id}`
+        if (req.accepts('text/html')) {
+          res.redirect(`/${_id}`)
+        } else if (req.accepts('application/json')) {
+          res.json({ url })
+        } else {
+          res.send(url)
+        }
       })
     })
     .catch((err) => {
-      handleError(res, err.message || err)
+      handleError(req, res, err.message || err)
     })
 })
 
@@ -107,7 +142,7 @@ app.get('/:id', (req, res) => {
 
     const withoutExtension = files.map(stripExt)
     if (!withoutExtension.includes(id)) {
-      return handleError(res, `No file found for ${id}`)
+      return handleError(req, res, `No file found for ${id}`)
     }
 
     const fileName = files.find((f) => stripExt(f) === id)
@@ -128,7 +163,7 @@ app.get('/:id', (req, res) => {
           }))
         })
         .catch((err) => {
-          handleError(res, err.message || err)
+          handleError(req, res, err.message || err)
         })
     } else {
       res.send(playerPage({

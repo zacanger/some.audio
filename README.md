@@ -19,6 +19,8 @@ app as stupid-simple as this should need client-side JS to do things.
 
 ## TODO
 
+* Clean up and document API, including good response
+  sprunge/ix-style client
 * Better styles in general
   * Also clean up that CSS, it's too big
 * Make it secure
