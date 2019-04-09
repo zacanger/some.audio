@@ -1,9 +1,9 @@
 const glob = require('glob')
+const stripExt = require('zeelib/lib/remove-extension')
 const { playerPage } = require('../pages')
 const {
   audioPath,
   handleError,
-  stripExt,
   validateId,
 } = require('../util')
 

@@ -1,9 +1,9 @@
-const sanitizeFilename = require('sanitize-filename')
 const { extname } = require('path')
+const moveFile = require('zeelib/lib/move-file')
+const sanitizeFilename = require('sanitize-filename')
 const {
   audioPath,
   handleError,
-  moveFile,
 } = require('../util')
 
 module.exports = (db) => (req, res) => {
