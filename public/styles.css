@@ -307,6 +307,11 @@ input[type="file"] + label:hover {
   align-self: flex-end;
 }
 
+#file-picker {
+  white-space: normal;
+  max-width: 250px;
+}
+
 .copy-link {
   margin-top: 16px;
   display: flex;
