@@ -3,6 +3,7 @@ const express = require('express')
 const bb = require('express-busboy')
 const compression = require('compression')
 const helmet = require('helmet')
+
 const {
   about,
   diag,
@@ -13,6 +14,7 @@ const {
   sitemap,
   upload,
 } = require('./api')
+
 const {
   audioPath,
   badRoutes,
@@ -29,10 +31,12 @@ app.use(helmet())
 app.use(compression())
 app.use(express.static(pub))
 app.use('/files', express.static(audioPath))
+
 bb.extend(app, {
   upload: true,
-  // 20MB
-  limits: { fileSize: 20000000 }
+  limits: { // 20MB
+    fileSize: 20000000
+  }
 })
 
 app.get('/', home)
