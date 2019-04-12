@@ -19,10 +19,6 @@ module.exports = (db) => (req, res) => {
     return handleError(req, res, 'File is too large')
   }
 
-  if (!/audio/i.test(file.mimetype)) {
-    return handleError(req, res, 'Invalid audio file')
-  }
-
   const getNewPath = (n) => `${audioPath}/${n}${ext}`
   db.get('files')
     .insert({ title, artist, description })
@@ -34,10 +30,13 @@ module.exports = (db) => (req, res) => {
         }
 
         const url = `https://some.audio/${_id}`
-        if (req.accepts('text/html')) {
+        const ua = req.get('user-agent') || req.get('User-Agent') ||  ''
+        if (ua === 'some-audio-shell-client') {
+          res.send(url)
+        } else if (req.accepts('text/html')) {
           res.redirect(`/${_id}`)
         } else if (req.accepts('application/json')) {
-          res.json({ url })
+          res.json(url)
         } else {
           res.send(url)
         }

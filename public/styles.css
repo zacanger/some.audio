@@ -319,6 +319,11 @@ input[type="file"] + label:hover {
   cursor: pointer;
 }
 
+.about-content {
+  text-align: left;
+  max-width: 500px;
+}
+
 
 
 
