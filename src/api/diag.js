@@ -1,5 +1,5 @@
 const { readdir } = require('fs')
-const { audioPath } = require('../util')
+const { audioPath, packageName, version } = require('../util')
 
 module.exports = (req, res) => {
   readdir(audioPath, (err, files) => {
@@ -7,6 +7,10 @@ module.exports = (req, res) => {
       throw err
     }
     const count = files.filter((a) => a !== '.gitkeep').length
-    res.json({ count })
+    res.json({
+      name: packageName,
+      version,
+      count,
+    })
   })
 }
