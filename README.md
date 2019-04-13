@@ -29,4 +29,7 @@ app as stupid-simple as this should need client-side JS to do things.
 * Write some tests
 * Users? Auth? OAuth?
 * Figure out how to make this pay for itself
+  * Acceptable Ads?
+* Server-side logging
+* Client-side monitoring?
 * Parse audio files server-side if no data provided
