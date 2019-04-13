@@ -1,5 +1,5 @@
 workflow "Install, Test" {
-  on = "release"
+  on = "push"
   resolves = ["Test"]
 }
 
