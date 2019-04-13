@@ -21,7 +21,10 @@ const tryJson = (a) =>
 
 const handleError = (req, res, err) => {
   console.trace(err)
-  if (req.accepts('text/html')) {
+  const ua = req.get('user-agent') || req.get('User-Agent') ||  ''
+  if (ua === 'some-audio-shell-client') {
+    res.send(err + '\n')
+  } else if (req.accepts('text/html')) {
     res.send(errorPage(err))
   } else if (req.accepts('application/json')) {
     res.send(tryJson(err))

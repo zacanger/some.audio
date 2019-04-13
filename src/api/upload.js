@@ -8,6 +8,7 @@ const {
 
 module.exports = (db) => (req, res) => {
   if (!req.files || !req.files.file) {
+    res.status(400)
     return handleError(req, res, 'No file specified.')
   }
 
@@ -16,6 +17,7 @@ module.exports = (db) => (req, res) => {
   const ext = req.query.ext ? sanitizeFilename(req.query.ext) : extname(file.filename)
 
   if (file.truncated) {
+    res.status(413)
     return handleError(req, res, 'File is too large')
   }
 
@@ -32,17 +34,18 @@ module.exports = (db) => (req, res) => {
         const url = `https://some.audio/${_id}`
         const ua = req.get('user-agent') || req.get('User-Agent') ||  ''
         if (ua === 'some-audio-shell-client') {
-          res.send(url)
+          res.send(url + '\n')
         } else if (req.accepts('text/html')) {
           res.redirect(`/${_id}`)
         } else if (req.accepts('application/json')) {
-          res.json(url)
+          res.json(url + '\n')
         } else {
-          res.send(url)
+          res.send(url + '\n')
         }
       })
     })
     .catch((err) => {
+      res.status(500)
       handleError(req, res, err.message || err)
     })
 }

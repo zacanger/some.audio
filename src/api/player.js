@@ -16,6 +16,7 @@ module.exports = (db) => (req, res) => {
 
     const withoutExtension = files.map(stripExt)
     if (!withoutExtension.includes(id)) {
+      res.status(404)
       return handleError(req, res, `No file found for ${id}`)
     }
 
@@ -37,6 +38,7 @@ module.exports = (db) => (req, res) => {
           }))
         })
         .catch((err) => {
+          res.status(500)
           handleError(req, res, err.message || err)
         })
     } else {
