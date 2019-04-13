@@ -2,7 +2,7 @@ const layout = require('./layout')
 
 const shellScript = require('fs')
   .readFileSync(
-    require('path').resolve(__dirname, '..', '..', 'some-audio.sh')
+    require('path').resolve(__dirname, '..', '..', 'scripts', 'some-audio.sh')
   ).toString()
 
 const shellText = `
