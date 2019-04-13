@@ -1,5 +1,10 @@
 /* eslint-disable */
 /*
+modified from https://github.com/sergivb01/AudioPlayer-3/
+
+TODO:
+make it work on mobile, make seek clicks intuitive
+
 The MIT License (MIT)
 
 Copyright (c) 2016 Sergi Vos
