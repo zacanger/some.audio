@@ -2,7 +2,7 @@
 
 Simple, anonymous audio file host
 
-[Support this project](https://paypal.me/zacanger)
+[![CircleCI](https://circleci.com/gh/zacanger/some.audio.svg?style=svg)](https://circleci.com/gh/zacanger/some.audio) [![Support with PayPal](https://img.shields.io/badge/paypal-donate-yellow.png)](https://paypal.me/zacanger)
 
 ## Notes
 
