@@ -33,4 +33,4 @@ app as stupid-simple as this should need client-side JS to do things.
 * Server-side logging
 * Client-side monitoring?
 * Parse audio files server-side if no data provided
-* Only run Circle GH workflow and Circle builds on tag
+* Only run GH workflow on tag
