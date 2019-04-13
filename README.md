@@ -17,20 +17,4 @@ template strings.
 Try to keep at least core functionality working without JS. There's no reason an
 app as stupid-simple as this should need client-side JS to do things.
 
-## TODO
-
-* Better styles in general
-  * Also clean up that CSS, it's too big
-* Use S3 or DO Spaces or similar for storage
-* Move off Mongo to real DB
-* Expire files after some time?
-* Rewrite in something hipster (Rust?)
-* Deploy in Docker
-* Write some tests
-  * Set up coverage collection, codecov and codeclimate
-* Users? Auth? OAuth?
-* Figure out how to make this pay for itself
-  * Acceptable Ads?
-* Server-side logging
-* Client-side monitoring?
-* Parse audio files server-side if no data provided
+See the [todo list](./TODO.md)
