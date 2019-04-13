@@ -27,10 +27,10 @@ app as stupid-simple as this should need client-side JS to do things.
 * Rewrite in something hipster (Rust?)
 * Deploy in Docker
 * Write some tests
+  * Set up coverage collection, codecov and codeclimate
 * Users? Auth? OAuth?
 * Figure out how to make this pay for itself
   * Acceptable Ads?
 * Server-side logging
 * Client-side monitoring?
 * Parse audio files server-side if no data provided
-* Only run GH workflow on tag
