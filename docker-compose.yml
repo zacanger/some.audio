@@ -7,8 +7,7 @@ services:
       - ./package.json:/app/package.json:cached
       - ./node_modules:/app/node_modules:cached
       - ./scripts:/app/scripts:cached
-      - ./src:/app/src:cached
-      - ./index.js:/app/index.js:cached
+      - ./lib:/app/lib:cached
       - ./public:/app/public:cached
       - ./files:/app/files:cached
       - ./.eslintrc.json:/app/.eslintrc.json:cached

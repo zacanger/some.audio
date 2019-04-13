@@ -9,7 +9,7 @@
     "url": "http://zacanger.com"
   },
   "license": "MIT",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "prd": "NODE_ENV=production PORT=80 forever start -a -l f.log -e e.log -o o.log index.js",
     "start": "./scripts/start.sh",
