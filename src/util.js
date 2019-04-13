@@ -43,8 +43,10 @@ const validateId = (i) => {
 }
 
 const badRoutes = [
+  '/webdav',
   '/wp-admin',
   '/wp-login',
+  /.jsp$/,
   /.php$/,
 ]
 
