@@ -22,8 +22,9 @@ module.exports = (db) => (req, res) => {
   }
 
   const getNewPath = (n) => `${audioPath}/${n}${ext}`
+  const timestamp = new Date().toJSON()
   db.get('files')
-    .insert({ title, artist, description })
+    .insert({ title, artist, description, timestamp })
     .then(({ _id }) => {
       moveFile(file.file, getNewPath(_id), (err) => {
         if (err) {
