@@ -9,7 +9,7 @@ Simple, anonymous audio file host
 To install and run locally, `npm ci` and `npm start`. You'll need to have
 Docker and Docker Compose installed.
 
-Deploy process is currently terrible: git push, ssh, git pull, forever restart.
+To deploy, merge to master.
 
 There's no view engine, because I don't like any of them. Views are just
 template strings.
