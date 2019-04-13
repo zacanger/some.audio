@@ -15,7 +15,7 @@
     "start": "./scripts/start.sh",
     "start:serve": "nodemon index.js",
     "test": "npm run test:lint && sortpack",
-    "test:lint": "eslint -c .eslintrc.json src"
+    "test:lint": "eslint -c .eslintrc.json lib"
   },
   "homepage": "https://some.audio",
   "repository": {
