@@ -1,0 +1,29 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package-lock.json" }}
+          - v1-dependencies-
+      - run: npm i
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
+      - run: npm t
+      - deploy:
+          command: >
+            ssh -o "StrictHostKeyChecking no" root@some.audio
+            "cd /root/some.audio && \
+               git fetch && \
+               git reset --hard origin/master && \
+               git pull && \
+               npm ci && \
+               ./node_modules/.bin/forever restart 0 && \
+               sleep 2 && \
+               ./node_modules/.bin/forever logs 0"

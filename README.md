@@ -25,8 +25,7 @@ app as stupid-simple as this should need client-side JS to do things.
 * Move off Mongo to real DB
 * Expire files after some time?
 * Rewrite in something hipster (Rust?)
-* Set up CI/CD/CD (Circle?)
-  * Deploy in Docker
+* Deploy in Docker
 * Write some tests
 * Users? Auth? OAuth?
 * Figure out how to make this pay for itself
