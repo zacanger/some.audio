@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# copy this into a file (I suggest naming in some-audio.sh),
+# copy this into a file (I suggest naming it some-audio.sh),
 # chmod a+x some-audio.sh (or the filename you chose),
 # and put it in your $PATH
 
