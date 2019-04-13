@@ -7,7 +7,7 @@ const shellScript = require('fs')
 
 const shellText = `
 <br>
-You can use some.audio from your shell:
+You can use some.audio from your shell, if you have a POSIX-like shell and cURL:
 <pre><code>
 ${shellScript}
 </code>
