@@ -15,6 +15,11 @@ const sitemap = `
   <lastmod>2019-04-09T20:41:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+<url>
+  <loc>https://some.audio/upload</loc>
+  <lastmod>2019-04-09T20:41:55+00:00</lastmod>
+  <priority>0.60</priority>
+</url>
 </urlset>
 `
 

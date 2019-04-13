@@ -46,6 +46,7 @@ app.get('/sitemap.xml', sitemap)
 app.get('/about', about)
 app.get('/diag', diag)
 app.post('/upload', upload(db))
+app.get('/upload', home)
 app.get('/:id', player(db))
 
 listenLog(app)
