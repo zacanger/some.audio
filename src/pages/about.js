@@ -1,18 +1,17 @@
 const layout = require('./layout')
 
+const shellScript = require('fs')
+  .readFileSync(
+    require('path').resolve(__dirname, '..', '..', 'some-audio.sh')
+  ).toString()
+
 const shellText = `
 <br>
 You can use some.audio from your shell:
-<br>
-<code>
-<br>curl \
-  <br> -F "title=Awesome Title" \\
-  <br> -F artist="The Best Band" \\
-  <br> -F description="I love this song!" \\
-  <br> -F "file=@some.mp3" \\
-  <br> -H 'User-Agent: some-audio-shell-client' \\
-  <br> https://some.audio/upload
+<pre><code>
+${shellScript}
 </code>
+</pre>
 `
 
 const aboutText = `
