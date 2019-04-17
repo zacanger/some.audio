@@ -14,5 +14,4 @@
 * Figure out how to make this pay for itself
   * Acceptable Ads?
 * Logging
-* Parse audio files server-side if no data provided
 * Better logo, icons, colorscheme, meta theme, etc
