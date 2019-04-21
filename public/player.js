@@ -24,7 +24,28 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-function Microne (parentEl) {
+function createEl (el) {
+  return document.createElement(el)
+}
+
+function style (rules) {
+  return function (el) {
+    Object.keys(rules)
+      .forEach(function (rule) {
+        el.style[rule] = rules[rule]
+      })
+  }
+}
+
+function createStyled (el) {
+  return function (rules) {
+    var e = createEl(el)
+    style(rules)(e)
+    return e
+  }
+}
+
+function Player (parentEl) {
   this.audio = null
   this._src = null
   this._events = []
@@ -33,9 +54,7 @@ function Microne (parentEl) {
   this.pChar = '>'
   this.sChar = '||'
 
-  this.el = document.createElement('div')
-
-  applyStyle(this.el, {
+  this.el = createStyled('div')({
     width: '100%',
     height: '100%',
     border: '1px solid #000',
@@ -43,10 +62,8 @@ function Microne (parentEl) {
     position: 'relative'
   })
 
-  this.fillEl = document.createElement('div')
-
-  applyStyle(this.fillEl, {
-    background: '#eee',
+  this.fillEl = createStyled('div')({
+    background: '#f1e3fc',
     height: '100%',
     width: '0%',
     pointerEvents: 'none'
@@ -54,22 +71,20 @@ function Microne (parentEl) {
 
   this.el.appendChild(this.fillEl)
 
-  this.playButton = document.createElement('div')
-  this.playButton.innerHTML = this.pChar
-
-  applyStyle(this.playButton, {
+  this.playButton = createStyled('div')({
     cursor: 'pointer',
     fontFamily: 'monospace',
-    fontSize: '14px',
+    color: '#f0450b',
+    fontSize: '32px',
     position: 'absolute',
     top: '50%',
     left: '50%',
-    width: '25px',
-    height: '25px',
     transform: 'translate(-50%, -50%)',
     textAlign: 'center',
     fontWeight: 'bold'
   })
+
+  this.playButton.innerHTML = this.pChar
 
   this.el.appendChild(this.playButton)
 
@@ -122,10 +137,6 @@ function Microne (parentEl) {
   }
 
   var t = this
-
-  function applyStyle (domElem, style) {
-    Object.assign(domElem.style, style)
-  }
 
   function elClick (e) {
     e.preventDefault()
