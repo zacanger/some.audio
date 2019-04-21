@@ -24,16 +24,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-function Microne(parent_el) {
+function Microne (parentEl) {
   this.audio = null
-  this._src_ = null
-  this._events_ = []
+  this._src = null
+  this._events = []
   this.isPlaying = false
 
   this.pChar = '>'
   this.sChar = '||'
 
   this.el = document.createElement('div')
+
   applyStyle(this.el, {
     width: '100%',
     height: '100%',
@@ -42,17 +43,20 @@ function Microne(parent_el) {
     position: 'relative'
   })
 
-  this.fill_el = document.createElement('div')
-  applyStyle(this.fill_el, {
+  this.fillEl = document.createElement('div')
+
+  applyStyle(this.fillEl, {
     background: '#eee',
     height: '100%',
     width: '0%',
     pointerEvents: 'none'
   })
-  this.el.appendChild(this.fill_el)
+
+  this.el.appendChild(this.fillEl)
 
   this.playButton = document.createElement('div')
   this.playButton.innerHTML = this.pChar
+
   applyStyle(this.playButton, {
     cursor: 'pointer',
     fontFamily: 'monospace',
@@ -66,16 +70,17 @@ function Microne(parent_el) {
     textAlign: 'center',
     fontWeight: 'bold'
   })
+
   this.el.appendChild(this.playButton)
 
   this.init = function () {
-    parent_el.appendChild(this.el)
+    parentEl.appendChild(this.el)
     this.el.addEventListener('click', elClick)
     this.playButton.addEventListener('click', playClick)
   }
 
   this.source = function (src, preload) {
-    this._src_ = src
+    this._src = src
     if (preload !== false) {
       this.audio = new Audio(src)
       this.audio.addEventListener('timeupdate', timeUpdate)
@@ -84,8 +89,8 @@ function Microne(parent_el) {
   }
 
   this.play = function () {
-    if (!this.audio && this._src_) {
-      this.source(this._src_)
+    if (!this.audio && this._src) {
+      this.source(this._src)
       this.applyEvents()
     }
 
@@ -103,14 +108,14 @@ function Microne(parent_el) {
   }
 
   this.applyEvents = function () {
-    for (var i in this._events_) {
-      this.audio.addEventListener(this._events_[i].e, this._events_[i].h)
+    for (var i in this._events) {
+      this.audio.addEventListener(this._events[i].e, this._events[i].h)
     }
-    this._events_ = []
+    this._events = []
   }
 
   this.on = function (e, h) {
-    this._events_.push({e, h})
+    this._events.push({e, h})
     if (this.audio) {
       this.audio.addEventListener(e, h)
     }
@@ -118,11 +123,11 @@ function Microne(parent_el) {
 
   var t = this
 
-  function applyStyle(domElem, style) {
+  function applyStyle (domElem, style) {
     Object.assign(domElem.style, style)
   }
 
-  function elClick(e) {
+  function elClick (e) {
     e.preventDefault()
 
     if (e.target != t.playButton && t.isPlaying) {
@@ -131,7 +136,7 @@ function Microne(parent_el) {
     }
   }
 
-  function playClick(e) {
+  function playClick (e) {
     e.preventDefault()
 
     if (t.isPlaying) {
@@ -141,15 +146,15 @@ function Microne(parent_el) {
     }
   }
 
-  function timeUpdate(e) {
+  function timeUpdate (e) {
     var at = (t.audio.currentTime * 100 / t.audio.duration).toFixed(3)
-    t.fill_el.style.width = at + '%'
+    t.fillEl.style.width = at + '%'
   }
 
-  function audioEnded() {
+  function audioEnded () {
     t.pause()
     t.audio.currentTime = 0
-    t.fill_el.style.width = '0%'
+    t.fillEl.style.width = '0%'
   }
 
   this.init()
