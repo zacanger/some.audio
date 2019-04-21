@@ -1,5 +1,6 @@
 # TODO
 
+* Fix the player to work well on mobile. See todos in public/player.js
 * Better styles
   * Also clean up that CSS, it's too big
 * Minify and gzip all the things
