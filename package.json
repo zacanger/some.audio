@@ -11,7 +11,10 @@
   "license": "MIT",
   "main": "lib/index.js",
   "scripts": {
+    "build": "./scripts/build-css.sh && ./scripts/build-js.sh",
     "prd": "NODE_ENV=production PORT=80 forever start -a -l f.log -e e.log -o o.log lib/index.js",
+    "prebuild": "npm t",
+    "preversion": "npm run build",
     "start": "./scripts/start.sh",
     "start:serve": "nodemon lib/index.js",
     "test": "npm run test:lint && sortpack",
@@ -40,14 +43,17 @@
     "helmet": "3.16.0",
     "mmmagic": "0.5.2",
     "monk": "6.0.6",
-    "music-metadata": "3.5.4",
+    "music-metadata": "3.6.1",
     "nodemon": "1.18.11",
     "sanitize-filename": "1.6.1",
     "zeelib": "8.6.0"
   },
   "devDependencies": {
+    "autoprefixer": "9.5.1",
     "babel-eslint": "10.0.1",
+    "babel-minify": "0.5.0",
     "boring-cluster": "5.0.1",
+    "cssnano": "4.1.10",
     "eslint": "5.16.0",
     "eslint-config-zacanger": "3.4.2",
     "eslint-plugin-babel": "5.3.0",
@@ -55,6 +61,7 @@
     "eslint-plugin-node": "8.0.1",
     "eslint-plugin-promise": "4.1.1",
     "eslint-plugin-unicorn": "8.0.2",
-    "sortpack": "1.1.4"
+    "postcss-cli-simple": "3.0.0",
+    "sortpack": "1.1.5"
   }
 }

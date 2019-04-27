@@ -130,7 +130,7 @@ function Player (parentEl) {
   }
 
   this.on = function (e, h) {
-    this._events.push({e, h})
+    this._events.push({e: e, h: h})
     if (this.audio) {
       this.audio.addEventListener(e, h)
     }
