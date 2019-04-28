@@ -13,11 +13,11 @@
   "scripts": {
     "build": "./scripts/build-css.sh && ./scripts/build-js.sh",
     "prd": "NODE_ENV=production PORT=80 forever start -a -l f.log -e e.log -o o.log lib/index.js",
-    "prebuild": "npm t",
+    "prebuild": "npm t && sortpack",
     "preversion": "npm run build",
     "start": "./scripts/start.sh",
     "start:serve": "nodemon lib/index.js",
-    "test": "npm run test:lint && sortpack",
+    "test": "npm run test:lint",
     "test:lint": "eslint -c .eslintrc.json lib"
   },
   "homepage": "https://some.audio",

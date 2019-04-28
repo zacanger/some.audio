@@ -327,3 +327,32 @@ input[type="file"] + label:hover {
   text-align: left;
   max-width: 500px;
 }
+
+.js {
+  display: none;
+}
+
+.share-buttons {
+  margin-top: 8px;
+}
+
+.share-button {
+  margin-top: 8px;
+  color: #f1e3fc;
+  background-color: #f0450b;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  -webkit-transition-duration: .3s;
+  transition-duration: .3s;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.share-button:hover {
+  background-color: #F1E3FC;
+  color: #f0450b;
+}
