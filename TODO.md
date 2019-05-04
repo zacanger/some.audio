@@ -12,7 +12,8 @@
   * Logging
 
 * Misc:
-  * Rewrite in something hipster (Rust?)
+  * Add report type of feature
+  * Convert to TS
   * Expire files after some time?
   * Write some tests
   * Set up coverage collection, codecov and codeclimate
