@@ -9,7 +9,7 @@
   * Use S3 or DO Spaces or similar for storage
   * Move off Mongo to real DB
   * Deploy in Docker
-  * Logging
+  * Log to somewhere
 
 * Misc:
   * Add report type of feature
