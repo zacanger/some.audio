@@ -46,16 +46,16 @@
     "helmet": "3.18.0",
     "mmmagic": "0.5.3",
     "monk": "7.0.0",
-    "music-metadata": "4.1.1",
+    "music-metadata": "4.2.0",
     "nodemon": "1.19.1",
     "pino": "5.12.6",
     "sanitize-filename": "1.6.1",
     "winston": "3.2.1",
-    "zeelib": "8.6.0"
+    "zeelib": "8.6.1"
   },
   "devDependencies": {
     "autoprefixer": "9.6.0",
-    "babel-eslint": "10.0.1",
+    "babel-eslint": "10.0.2",
     "babel-minify": "0.5.0",
     "cssnano": "4.1.10",
     "postcss-cli-simple": "3.0.0",
