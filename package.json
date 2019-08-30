@@ -8,7 +8,7 @@
     "name": "Zac Anger",
     "url": "http://zacanger.com"
   },
-  "license": "MIT",
+  "license": "LGPL-3.0",
   "main": "lib/index.js",
   "scripts": {
     "build": "./scripts/build-css.sh && ./scripts/build-js.sh",

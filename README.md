@@ -14,4 +14,4 @@ This project is sponsored on [Patreon](https://www.patreon.com/zacanger) by:
 
 * [Todos](./TODO.md)
 * [Contributing Docs](./.github/CONTRIBUTING.md)
-* [License (MIT)](./LICENSE.md)
+* [License](./LICENSE.md)
