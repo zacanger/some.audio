@@ -10,7 +10,6 @@ services:
       - ./lib:/app/lib:cached
       - ./public:/app/public:cached
       - ./files:/app/files:cached
-      - ./.eslintrc.json:/app/.eslintrc.json:cached
     command: npm run start:serve
     environment:
       NODE_ENV: development
