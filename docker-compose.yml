@@ -1,7 +1,7 @@
 version: "3"
 services:
   node:
-    image: mhart/alpine-node:11
+    image: node:12-alpine
     working_dir: /app
     volumes:
       - ./package.json:/app/package.json:cached

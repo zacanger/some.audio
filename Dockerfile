@@ -1,11 +1,8 @@
 # unused -- deploying in docker doesn't work yet
 
-FROM mhart/alpine-node:10
+FROM node:12-alpine
 ENV appdir /app
-# RUN addgroup -g 1000 -S node && \
-  # adduser -u 1000 -S node -G node
 WORKDIR ${appdir}
-COPY --chown=node:node . .
 # USER node
 ENV NODE_ENV=production \
     TERM=linux \

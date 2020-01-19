@@ -12,13 +12,14 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "./scripts/build-css.sh && ./scripts/build-js.sh",
+    "format": "prettier --write \"lib/**/*.js\"",
     "prd": "NODE_ENV=production PORT=80 forever start -a -l f.log -e e.log -o o.log lib/index.js",
-    "prebuild": "npm t && sortpack",
+    "prebuild": "npm t",
     "preversion": "npm run build",
     "start": "./scripts/start.sh",
     "start:serve": "nodemon lib/index.js",
     "test": "npm run test:lint",
-    "test:lint": "standard"
+    "test:lint": "eslint -c .eslintrc.json lib"
   },
   "homepage": "https://some.audio",
   "repository": {
@@ -39,31 +40,48 @@
     "express": "4.17.1",
     "express-busboy": "7.0.1",
     "express-pino-logger": "4.0.0",
-    "express-static-gzip": "2.0.5",
-    "express-winston": "4.0.1",
-    "forever": "1.0.0",
+    "express-static-gzip": "2.0.6",
+    "express-winston": "4.0.2",
+    "forever": "2.0.0",
     "glob": "7.1.6",
     "helmet": "3.21.2",
     "mmmagic": "0.5.3",
-    "monk": "7.1.1",
-    "music-metadata": "5.0.1",
-    "nodemon": "2.0.0",
-    "pino": "5.14.0",
+    "monk": "7.1.2",
+    "music-metadata": "6.3.0",
+    "nodemon": "2.0.2",
+    "pino": "5.16.0",
     "sanitize-filename": "1.6.3",
     "winston": "3.2.1",
-    "zeelib": "11.0.5"
+    "zeelib": "11.0.9"
   },
   "devDependencies": {
-    "autoprefixer": "9.7.2",
+    "autoprefixer": "9.7.4",
     "babel-eslint": "10.0.3",
     "babel-minify": "0.5.1",
     "cssnano": "4.1.10",
+    "eslint": "6.8.0",
+    "eslint-plugin-zacanger": "1.0.0",
+    "husky": "4.0.10",
+    "lint-staged": "10.0.0",
     "postcss-cli-simple": "3.0.0",
-    "sortpack": "2.0.4",
-    "standard": "14.3.1"
+    "prettier": "1.19.1",
+    "sortpack": "2.0.4"
   },
   "funding": {
     "type": "ko-fi",
     "url": "https://ko-fi.com/zacanger"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write"
+    ],
+    "package.json": [
+      "sortpack"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
