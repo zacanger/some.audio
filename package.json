@@ -17,7 +17,7 @@
   "scripts": {
     "build": "./scripts/build-css.sh && ./scripts/build-js.sh",
     "format": "prettier --write \"lib/**/*.js\"",
-    "prd": "NODE_ENV=production PORT=80 forever start -a -l f.log -e e.log -o o.log lib/index.js",
+    "prd": "NODE_ENV=production PORT=8080 forever start -a -l f.log -e e.log -o o.log lib/index.js",
     "prebuild": "npm t",
     "preversion": "npm run build",
     "start": "./scripts/start.sh",
