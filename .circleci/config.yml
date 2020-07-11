@@ -24,7 +24,7 @@ jobs:
                git fetch && \
                git reset --hard origin/master && \
                git pull && \
-               npm i --production --no-optional && \
+               npm ci --production --no-optional && \
                ./node_modules/.bin/forever restart 0 && \
                sleep 2 && \
                ./node_modules/.bin/forever logs 0"
